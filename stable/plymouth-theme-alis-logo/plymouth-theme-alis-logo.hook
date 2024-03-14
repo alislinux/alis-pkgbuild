@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Type = Package
+Target = plymouth-theme-alis-logo
+
+[Action]
+Description = Updating Plymouth Theme...
+When = PostTransaction
+Depends = plymouth
+Exec = /bin/sh -c "plymouth-set-default-theme -R alis-logo"

@@ -1,0 +1,29 @@
+# Maintainer: Hayate Nakamura <hayatehay.njb at gmail dot com>
+pkgname=alis-logo
+pkgver=24.03
+pkgrel=1
+pkgdesc="Alis Logo"
+arch=("any")
+url="https://github.com/alislinux/alis-logo"
+license=("custom:njb-trademark")
+depends=("hicolor-icon-theme")
+provides=("univalent-logo")
+conflicts=("univalent-logo")
+replaces=("univalent-logo")
+options=(!strip !emptydirs)
+source=(${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/${pkgver}.tar.gz)
+md5sums=('8e649b0121163603b45f54052fe2e32a')
+
+package() {
+	cd ${srcdir}/${pkgname}-${pkgver}
+
+	mkdir -p ${pkgdir}/usr/share
+	cp -r backgrounds ${pkgdir}/usr/share
+	cp -r icons ${pkgdir}/usr/share
+	cp -r pixmaps ${pkgdir}/usr/share
+	cd ${pkgdir}/usr/share/pixmaps
+	ln -sf alis-logo-sprite.png univalent.png
+
+	mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
+	install -Dm644 ${srcdir}/${pkgname}-${pkgver}/LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
+}

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Alis Calamares Icon
+Icon=calamares
+Exec=sh -c "/usr/bin/alis-calamares-desktop"
+Terminal=false
+Type=Application
+StartupNotify=false

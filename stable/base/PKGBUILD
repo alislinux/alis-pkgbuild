@@ -1,0 +1,37 @@
+# Maintainer: Naka-mura Jukebox
+
+pkgname=base
+pkgver=3+alis1
+pkgrel=1
+pkgdesc='Minimal package set to define a basic Alis LGX installation'
+url='https://njb-fm.github.io/'
+arch=('any')
+license=('BSD-3-Clause')
+source=('LICENSE')
+sha256sums=('77dc1c21675c6c76261708884fa13b8385ecfc5d39d27db0dd12576f089f55b8')
+depends=(
+  # very very base
+  'filesystem' 'gcc-libs' 'glibc' 'bash'
+
+  # POSIX tools
+  'coreutils' 'file' 'findutils' 'gawk' 'grep' 'procps-ng' 'sed' 'tar'
+
+  # standard linux toolset
+  'gettext' 'pciutils' 'psmisc' 'shadow' 'util-linux' 'bzip2' 'gzip' 'xz'
+
+  # distro defined requirements
+  'licenses' 'pacman' 'archlinux-keyring' 'alis-keyring' 'systemd' 'systemd-sysvcompat' 'your-freedom'
+
+  # networking, ping, etc
+  'iputils' 'iproute2'
+)
+optdepends=(
+  'linux: bare metal support'
+)
+
+package(){
+  mkdir -p $pkgdir/usr/share/licenses/$pkgname/
+  cp $srcdir/LICENSE $pkgdir/usr/share/licenses/$pkgname/
+}
+
+# vim:set sw=2 sts=-1 et:

@@ -1,0 +1,23 @@
+# Maintainer: Hayyate Nakamura <hayatehay.njb at gmail dot com>
+
+pkgname=alis-restricted-extras
+pkgver=24.02
+pkgrel=1
+pkgdesc='Installer for restricted extra packages'
+arch=('any')
+url='https://github.com/alislinux'
+license=('BSD-3-Clause')
+depends=('ttf-ms-fonts' 'gst-libav' 'gst-plugins-ugly' 'gstreamer-vaapi' 'ffmpeg' 'unrar')
+replaces=("univag-restricted-extras" "uve-restricted-extras")
+conflicts=("univag-restricted-extras" "uve-restricted-extras")
+provides=("univag-restricted-extras" "uve-restricted-extras")
+source=("LICENSE"
+        "README.md")
+md5sums=("f173b9a9c8e775d2779de8c6ae8f5751"
+         "beb4d4c6172ea99d3e657e5156f7ca78")
+
+package() {
+ cd $srcdir
+ install -Dm644 README.md $pkgdir/usr/share/docs/$pkgname/README.md
+ install -Dm644 LICENSE $pkgdir/usr/share/licenses/$pkgname/LICENSE
+}

@@ -1,0 +1,21 @@
+# Maintainer : Hayate Nakamura <hayatehay.njb at gmail dot com>
+
+pkgname=alis-keyring
+pkgver=20240223
+pkgrel=1
+pkgdesc='Alis PGP keyring'
+arch=('any')
+license=('BSD-3-Clause')
+url="https://github.com/alislinux/alis-keyring"
+install="${pkgname}.install"
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/${pkgver}/${pkgver}.tar.gz")
+sha512sums=('92b8e6c8adf27bd2f68f4ca2a124d3b07826e258f17fcf98b50887253e76b276cfc4aff06613667d9cf3041b028a01ad9475e5d9abf722881f524354c5486752')
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make PREFIX=/usr DESTDIR=${pkgdir} install
+
+    # add license
+    mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
+    cp "${srcdir}/${pkgname}-${pkgver}/LICENSE" ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
+}

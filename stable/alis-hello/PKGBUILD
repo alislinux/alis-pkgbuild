@@ -1,0 +1,19 @@
+# Maintainer: Hayate Naka-mura <hayatehay.njb at gmail dot com>
+
+pkgname=alis-hello
+pkgver=3.2
+pkgrel=1
+pkgdesc='System setting tools written in bash & zenity'
+arch=('any')
+url='https://github.com/alislinux/alis-hello'
+license=('BSD-3-Clause')
+replaces=('univalent-tools')
+depends=('networkmanager' 'tkpacman' 'zenity' 'alis-logo')
+opedepends=('pavucontrol' 'pavucontrol-qt')
+source=(${pkgname}-${pkgver}.tar.gz::"${url}/archive/refs/tags/${pkgver}.tar.gz")
+md5sums=('d33594211a57b00f610891daa26babdb')
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}/"
+  make DESTDIR="$pkgdir" install
+}

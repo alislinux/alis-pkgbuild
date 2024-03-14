@@ -1,0 +1,43 @@
+# Maintainer: Hayate Nakamura <hayatehay.njb at gmail.com>
+
+pkgname=calamares
+pkgver=3.3.5
+pkgrel=1
+pkgdesc='Distribution-independent installer framework'
+arch=('i686' 'x86_64')
+url="https://github.com/calamares/calamares"
+license=('MIT' 'BSD-2-Clause' 'CC0-1.0' 'CC-BY-4.0' 
+         'GPL-3.0-or-later' 'LGPL-2.1-only' 'LGPL-3.0-or-later')
+depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'solid' 'yaml-cpp' 'kpmcore'
+	'boost-libs' 'ckbcomp' 'hwinfo' 'qt6-svg' 'polkit-qt6'
+	'squashfs-tools' 'libpwquality' 'python')
+makedepends=('extra-cmake-modules' 'qt6-tools' 'qt6-translations' 'git' 'boost')
+source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
+	"calamares.desktop")
+sha256sums=('65b11d6bb2ba76fc74fed08faa4b6fe43d1a5bf4a2522b30fc43b44151686c47'
+            '536d17352dd590ef5aaa02eac8bcde2d9b7fd2c2cc3db20bece6270e42fad329')
+
+build() {
+	cd ${srcdir}/${pkgname}-${pkgver} || exit
+
+	mkdir -p build && cd build || exit
+	cmake .. \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_LIBDIR=lib \
+		-DBoost_NO_BOOST_CMAKE=ON \
+		-DWITH_QT6=ON \
+		-DWITH_APPSTREAM=OFF \
+		-DBUILD_TESTING=OFF \
+		-DSKIP_MODULES="webview interactiveterminal initramfs \
+                              initramfscfg packagechooser packagechooserq \
+                              dummyprocess dummypython dummycpp \
+                              dummypythonqt services-openrc"
+	make
+}
+
+package() {
+	cd ${srcdir}/${pkgname}-${pkgver}/build || exit
+	make DESTDIR=${pkgdir} install
+	install -Dm755 "${srcdir}/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
+}

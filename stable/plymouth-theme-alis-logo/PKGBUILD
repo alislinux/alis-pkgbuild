@@ -1,0 +1,31 @@
+# Maintainer: Hayate Nakamura <hayatehay.njb at gmail dot com>
+
+pkgname=plymouth-theme-alis-logo
+_themename=alis-logo
+
+pkgver=2.0
+pkgrel=2
+pkgdesc="A plymouth theme for Alis Linux/GNU/X"
+arch=('any')
+url=https://sourceforge.net/projects/alislinux
+_url=https://sourceforge.net/projects/alislinux/files/sources/plymouth-theme-alis-logo
+license=('GPL-3.0-only' 'custom:njb-trademark')
+depends=('plymouth')
+optdepends=()
+replaces=('plymouth-theme-uvgl-logo' 'plymouth-theme-uve-logo')
+source=("${_url}/${pkgname}-${pkgver}.tar.gz"
+        "trademark-guideline.md"
+        "plymouth-theme-alis-logo.hook")
+md5sums=('467b3810940d05e56911cd30423b51cd'
+         'b693e493f7b9b662e1a646a10dac8d3d'
+         'f3d7e3c95960fccd5d578543e059f0a8')
+
+package() {
+    cd ${srcdir}
+    mkdir -p ${pkgdir}/usr/share/plymouth/themes/${_themename}/
+    mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
+    mkdir -p ${pkgdir}/etc/pacman.d/hooks
+    cp -r ${pkgname}-${pkgver}/* ${pkgdir}/usr/share/plymouth/themes/${_themename}/
+    install -Dm644 trademark-guideline.md ${pkgdir}/usr/share/licenses/${pkgname}
+    install -Dm644 plymouth-theme-alis-logo.hook ${pkgdir}/etc/pacman.d/hooks/
+}

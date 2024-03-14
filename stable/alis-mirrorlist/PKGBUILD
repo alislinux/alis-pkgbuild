@@ -1,0 +1,17 @@
+# Maintainer : Hayate Nakamura <hayatehay.njb at gmail dot com>
+pkgname=alis-mirrorlist
+pkgver=20231004
+pkgrel=1
+pkgdesc='Alis repository mirrorlists'
+license=('BSD-3-Clause')
+arch=('any')
+url='https://alislinux.github.io/'
+source=("alis-mirrorlist"
+        "LICENSE")
+md5sums=('3c4c8d54f54a91f40eeefd9a38387c5a'
+         'fc67ef63e51464540f973f6161fcac3e')
+package() {
+    cd "${srcdir}"
+    install -Dm644 "${srcdir}/alis-mirrorlist" "${pkgdir}/etc/pacman.d/alis-mirrorlist"
+    install -Dm644 "${srcdir}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
