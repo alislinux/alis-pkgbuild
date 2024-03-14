@@ -1,0 +1,5 @@
+#!/bin/bash
+chvt 4
+calamares --platform linuxfb
+reboot
+

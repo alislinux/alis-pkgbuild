@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Alis Calamares Auto Start
+Icon=calamares
+Exec=sudo bash -c "/usr/bin/alis-calamares-autostart"
+Terminal=false
+Type=Application
+StartupNotify=false

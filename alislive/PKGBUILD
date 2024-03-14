@@ -1,0 +1,24 @@
+# Maintainer: Hayate Naka-mura <hayatehay.njb at gmail dot com>
+
+pkgname=alislive
+pkgver=24.03
+pkgrel=1
+pkgdesc='Copy calamares icon'
+arch=('any')
+url="https://github.com/alislinux/"
+license=('BSD-3-Clause')
+optdepends=('calamares')
+source=("alis-calamares-autostart"
+        "alis-calamares-autostart.desktop"
+	"LICENSE")
+
+sha256sums=('23a7b6be00169483f2c8e4f31081027e270633b4e2a558cb7c468b5cb6980aa1'
+            '3df9bc6bb76aa6220b4c70e2f75fab0f3a759732b50152b2461ed22d487ab5e3'
+            'd3f85f177f833e10b85f6903315edd32d3b558a22069cff4795425b888b00510')
+
+package() {
+	cd ${srcdir}
+	install -Dm755 "${srcdir}/alis-calamares-autostart" "${pkgdir}/usr/bin/alis-calamares-autosrart"
+	install -Dm644 "${srcdir}/alis-calamares-autostart.desktop" "${pkgdir}/etc/xdg/autostart/alis-calamares-autostart.desktop"
+	install -Dm755 "${srcdir}/LICENSE" "${pkgdir}/usr/licenses/${pkgname}/LICENSE"
+}
