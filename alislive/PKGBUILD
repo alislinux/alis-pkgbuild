@@ -2,7 +2,7 @@
 
 pkgname=alislive
 pkgver=24.03
-pkgrel=1
+pkgrel=2
 pkgdesc='Copy calamares icon'
 arch=('any')
 url="https://github.com/alislinux/"
@@ -18,7 +18,7 @@ sha256sums=('23a7b6be00169483f2c8e4f31081027e270633b4e2a558cb7c468b5cb6980aa1'
 
 package() {
 	cd ${srcdir}
-	install -Dm755 "${srcdir}/alis-calamares-autostart" "${pkgdir}/usr/bin/alis-calamares-autosrart"
+	install -Dm755 "${srcdir}/alis-calamares-autostart" "${pkgdir}/usr/bin/alis-calamares-autostart"
 	install -Dm644 "${srcdir}/alis-calamares-autostart.desktop" "${pkgdir}/etc/xdg/autostart/alis-calamares-autostart.desktop"
 	install -Dm755 "${srcdir}/LICENSE" "${pkgdir}/usr/licenses/${pkgname}/LICENSE"
 }
