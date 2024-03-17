@@ -1,7 +1,7 @@
 # Maintainer: Hayate Nakamura (hayatehay.njb at gmail dot com)
 pkgbase=alis-skel
-pkgname=('alis-skel-lxqt' 'alis-skel-xfce' 'alis-skel-plasma')
-pkgver=24.04.5
+pkgname=('alis-skel-lxqt' 'alis-skel-xfce' 'alis-skel-plasma' 'alis-skel-gnome')
+pkgver=24.04.6
 pkgrel=1
 pkgdesc="Settings for Alis LGX"
 arch=('any')
@@ -13,7 +13,7 @@ optdepends=('nako: an AUR helper'
             'system-config-printer: CUPS status applet')
 options=(!strip !emptydirs)
 source=("${pkgbase}-${pkgver}.tar.gz::${url}/archive/refs/tags/${pkgver}.tar.gz")
-md5sums=('89420a494d86fef4add78f1a8c497294')
+md5sums=('4781e6a01a91e8b16b9cbec70e708016')
 
 package_alis-skel-lxqt() {
 	replaces=('uvgl-skel-lxqt' 'uvgl-skel-lxqt-ja' 'uvgl-skel-lxqt-en' 'uve-skel-lxqt')
@@ -43,4 +43,14 @@ package_alis-skel-plasma() {
 	cp -r ${srcdir}/${pkgbase}-${pkgver}/plasma/etc/* ${pkgdir}/etc
 	cp -r ${srcdir}/${pkgbase}-${pkgver}/LICENSE ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
 	cp -r ${srcdir}/${pkgbase}-${pkgver}/plasma/usr/* ${pkgdir}/usr
+}
+
+package_alis-skel-gnome() {
+	replaces=('uvgl-skel-gnome' 'uvgl-skel-gnome-ja' 'uvgl-skel-gnome-en' 'uve-skel-gnome')
+
+	mkdir -p ${pkgdir}/etc
+	mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}/
+	cp -r ${srcdir}/${pkgbase}-${pkgver}/gnome/etc/* ${pkgdir}/etc
+	cp -r ${srcdir}/${pkgbase}-${pkgver}/LICENSE ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
+	cp -r ${srcdir}/${pkgbase}-${pkgver}/gnome/usr/* ${pkgdir}/usr
 }

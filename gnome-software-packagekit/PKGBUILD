@@ -1,0 +1,87 @@
+# Maintainer: Hayate Naka-mura <hayatehay.njb at gmail.com>
+# Contributor: Fabian Bornschein <fabiscafe@archlinux.org>
+# Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+# Contributor: Fabian Bornschein <fabiscafe-cat-mailbox-dog-org>
+# Contributor: Jan de Groot <jgc@archlinux.org>
+# Contributor: Yosef Or Boczko <yoseforb@gnome.org>
+
+pkgname=gnome-software-packagekit
+_pkgname=gnome-software
+pkgver=45.3
+pkgrel=1
+pkgdesc="GNOME Software Tools"
+url="https://wiki.gnome.org/Apps/Software/"
+provides=(gnome-software)
+conflicts=(gnome-software)
+arch=(x86_64)
+license=(GPL-2.0-or-later)
+depends=(
+  appstream
+  archlinux-appstream-data
+  gsettings-desktop-schemas
+  gtk4
+  libadwaita
+  libsoup3
+  libsysprof-capture
+  libxmlb
+  packagekit
+  polkit
+)
+makedepends=(
+  docbook-xsl
+  flatpak
+  fwupd
+  git
+  gobject-introspection
+  gtk-doc
+  libglib-testing
+  malcontent
+  meson
+)
+optdepends=(
+  'flatpak: Flatpak support plugin'
+  'fwupd: fwupd support plugin'
+  'malcontent: Parental control plugin'
+)
+groups=(gnome)
+_commit=f027ac3fc839c0c0fe68006cea1acc757461c128  # tags/45.3^0
+source=(
+  "git+https://gitlab.gnome.org/GNOME/gnome-software.git#commit=$_commit"
+  "git+https://gitlab.gnome.org/mwleeds/gnome-pwa-list.git"
+)
+b2sums=('SKIP'
+        'SKIP')
+
+pkgver() {
+  cd $_pkgname
+  git describe --tags | sed -r 's/\.([a-z])/\1/;s/([a-z])\./\1/;s/[^-]*-g/r&/;s/-/+/g'
+}
+
+prepare() {
+  cd $_pkgname
+
+  # support appstream 1.0
+  git cherry-pick -n 0655f358ed0e8455e12d9634f60bc4dbaee434e3 \
+                     e431ab003f3fabf616b6eb7dc93f8967bc9473e5
+
+  git submodule init
+  git submodule set-url subprojects/gnome-pwa-list "$srcdir/gnome-pwa-list"
+  git -c protocol.file.allow=always submodule update
+}
+
+build() {
+  local meson_options=(
+    -D packagekit=true
+  )
+
+  arch-meson $_pkgname build "${meson_options[@]}"
+  meson compile -C build
+}
+
+# Not running tests - need root and a D-Bus system bus
+
+package() {
+  meson install -C build --destdir "$pkgdir"
+}
+
+# vim:set sw=2 sts=-1 et:
