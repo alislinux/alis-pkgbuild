@@ -1,23 +1,19 @@
 # Maintainer: Hayate Naka-mura <hayatehay.njb at gmail.com>
-# Contributor: Fabian Bornschein <fabiscafe@archlinux.org>
-# Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
-# Contributor: Fabian Bornschein <fabiscafe-cat-mailbox-dog-org>
+# Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+# Maintainer: Fabian Bornschein <fabiscafe@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 # Contributor: Yosef Or Boczko <yoseforb@gnome.org>
 
 pkgname=gnome-software-packagekit
 _pkgname=gnome-software
-pkgver=45.3
+pkgver=46.0
 pkgrel=1
 pkgdesc="GNOME Software Tools"
 url="https://wiki.gnome.org/Apps/Software/"
-provides=(gnome-software)
-conflicts=(gnome-software)
 arch=(x86_64)
 license=(GPL-2.0-or-later)
 depends=(
   appstream
-  archlinux-appstream-data
   gsettings-desktop-schemas
   gtk4
   libadwaita
@@ -37,6 +33,7 @@ makedepends=(
   libglib-testing
   malcontent
   meson
+  python-packaging
 )
 optdepends=(
   'flatpak: Flatpak support plugin'
@@ -44,7 +41,9 @@ optdepends=(
   'malcontent: Parental control plugin'
 )
 groups=(gnome)
-_commit=f027ac3fc839c0c0fe68006cea1acc757461c128  # tags/45.3^0
+provides=(gnome-software)
+conflicts=(gnome-software)
+_commit=9dec134914268d135a6f5251ddd624fef2de3c10  # tags/46.0^0
 source=(
   "git+https://gitlab.gnome.org/GNOME/gnome-software.git#commit=$_commit"
   "git+https://gitlab.gnome.org/mwleeds/gnome-pwa-list.git"
@@ -59,10 +58,6 @@ pkgver() {
 
 prepare() {
   cd $_pkgname
-
-  # support appstream 1.0
-  git cherry-pick -n 0655f358ed0e8455e12d9634f60bc4dbaee434e3 \
-                     e431ab003f3fabf616b6eb7dc93f8967bc9473e5
 
   git submodule init
   git submodule set-url subprojects/gnome-pwa-list "$srcdir/gnome-pwa-list"
