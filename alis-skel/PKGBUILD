@@ -1,7 +1,7 @@
 # Maintainer: Hayate Nakamura (hayatehay.njb at gmail dot com)
 pkgbase=alis-skel
 pkgname=('alis-skel-lxqt' 'alis-skel-xfce' 'alis-skel-plasma' 'alis-skel-gnome')
-pkgver=24.04.7
+pkgver=24.04.8
 pkgrel=1
 pkgdesc="Settings for Alis LGX"
 arch=('any')
@@ -13,7 +13,7 @@ optdepends=('nako: an AUR helper'
             'system-config-printer: CUPS status applet')
 options=(!strip !emptydirs)
 source=("${pkgbase}-${pkgver}.tar.gz::${url}/archive/refs/tags/${pkgver}.tar.gz")
-md5sums=('7df54899b227f9f5c9ba72e52865a093')
+md5sums=('096f54aeea39ab9eec752651718dddda')
 
 package_alis-skel-lxqt() {
 	replaces=('uvgl-skel-lxqt' 'uvgl-skel-lxqt-ja' 'uvgl-skel-lxqt-en' 'uve-skel-lxqt')
