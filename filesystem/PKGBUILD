@@ -1,12 +1,12 @@
 # Maintainer: Hayate Naka-mura <hayatehay.njb at gmail.com>
 
 pkgname=filesystem
-pkgver=2024.03.14+alis24.04
+pkgver=2024.04.02+alis24.04
 pkgrel=1
 pkgdesc='Base Alis files'
 arch=('any')
-license=('BSD-3-Clause' 'custom:njb-trademark')
-url='https://njb-fm.github.io/'
+license=('BSD-3-Clause')
+url='https://alislinux.github.io/'
 depends=('iana-etc')
 backup=('etc/crypttab' 'etc/fstab' 'etc/group' 'etc/gshadow' 'etc/host.conf'
         'etc/hosts' 'etc/issue' 'etc/ld.so.conf' 'etc/nsswitch.conf'
@@ -16,8 +16,7 @@ source=('crypttab' 'env-generator' 'fstab' 'group' 'gshadow' 'host.conf' 'hosts'
         'issue' 'ld.so.conf' 'locale.sh' 'nsswitch.conf' 'os-release' 'profile'
         'passwd' 'resolv.conf' 'securetty' 'shadow' 'shells' 'sysctl' 'sysusers'
         'tmpfiles' 'subuid' 'subgid' 'archlinux-logo.svg' 'archlinux-logo.png'
-        'archlinux-logo-text.svg' 'archlinux-logo-text-dark.svg'
-        'EULA' 'LICENSE' 'trademark_guideline.md')
+        'archlinux-logo-text.svg' 'archlinux-logo-text-dark.svg' 'LICENSE')
 sha256sums=('e03bede3d258d680548696623d5979c6edf03272e801a813c81ba5a5c64f4f82'
             'ed0cb4f1db4021f8c3b5ce78fdf91d2c0624708f58f36c9cf867f4d93c3bc6da'
             'e54626e74ed8fee4173b62a545ab1c3a3a069e4217a0ee8fc398d9933e9c1696'
@@ -43,11 +42,9 @@ sha256sums=('e03bede3d258d680548696623d5979c6edf03272e801a813c81ba5a5c64f4f82'
             'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
             'a16d38c829c269b38490cea96bf9ca3ef226aad32f22364e20c6389ff79e6d1f'
             'b4c6de5bc8c79a498b4dc6c28fd93fe292b3f75b0c77400fbe581ec773cf67c1'
-            'e7cd09310f02170e1066e5cce5ef0301b001e0017848576d4411ec90b9e263ac'
-            '3bf52d8ef8422d145f5ac8c28cb58cc6a97e6f82282abe74a12577c7e95c1fe0'
-            'f5b3c9225a9d995b59cb08dde65ee668b78befbac333db1e9bea36f1217d3735'
-            'd3f85f177f833e10b85f6903315edd32d3b558a22069cff4795425b888b00510'
-            '3da17e414ec7c4b7a02e4696d70629ea9ab2136f37906d50759e6e095d3840e3')
+            '21cc53c1a28a3bfac1b3fd5ffeb19004d8aeb8cc5733376dd05fa5cb745c01f4'
+            'f9adfbfd4cc2805d043264def454a35ee37c0980e4d15ff220a58ff4a5c027b6'
+            '37fd89e49e53e30e15bae0e4d208f546fcd0a6b8061d4bd9f4a095c4276a5efa')
 
 package() {
   cd "$pkgdir"
@@ -135,9 +132,7 @@ package() {
   install -D -m644 "$srcdir"/archlinux-logo{.png,.svg,-text.svg,-text-dark.svg} usr/share/pixmaps
 
   # add license
-  install -D -m644 "$srcdir"/EULA usr/share/${pkgname}/EULA
   install -D -m644 "$srcdir"/LICENSE usr/share/licenses/${pkgname}/LICENSE
-  install -D -m644 "$srcdir"/trademark_guideline.md usr/share/licenses/${pkgname}/trademark_guideline.md
 }
 
 # vim:set ts=2 sw=2 et:
