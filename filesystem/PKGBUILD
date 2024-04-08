@@ -1,7 +1,7 @@
 # Maintainer: Hayate Naka-mura <hayatehay.njb at gmail.com>
 
 pkgname=filesystem
-pkgver=2024.04.02+alis24.04
+pkgver=2024.04.08+alis24.04
 pkgrel=1
 pkgdesc='Base Alis files'
 arch=('any')
