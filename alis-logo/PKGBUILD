@@ -1,6 +1,6 @@
 # Maintainer: Hayate Nakamura <hayatehay.njb at gmail dot com>
 pkgname=alis-logo
-pkgver=24.04
+pkgver=24.04.1
 pkgrel=1
 pkgdesc="Alis Logo"
 arch=("any")
@@ -12,7 +12,7 @@ conflicts=("univalent-logo")
 replaces=("univalent-logo")
 options=(!strip !emptydirs)
 source=(${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/${pkgver}.tar.gz)
-md5sums=('24c42228c1575bf8165a7d8c07f6b1bd')
+md5sums=('05ca76607cd21d0a330876121aae7068')
 
 package() {
 	cd ${srcdir}/${pkgname}-${pkgver}
