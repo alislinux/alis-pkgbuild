@@ -2,7 +2,7 @@
 
 pkgname=calamares
 pkgver=3.3.5
-pkgrel=2
+pkgrel=2.1
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 url="https://github.com/calamares/calamares"
@@ -10,7 +10,7 @@ license=('MIT' 'BSD-2-Clause' 'CC0-1.0' 'CC-BY-4.0'
          'GPL-3.0-or-later' 'LGPL-2.1-only' 'LGPL-3.0-or-later')
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'solid' 'yaml-cpp' 'kpmcore'
 	'boost-libs' 'ckbcomp' 'hwinfo' 'qt6-svg' 'polkit-qt6'
-	'squashfs-tools' 'libpwquality' 'python')
+	'squashfs-tools' 'libpwquality' 'python' 'plasma-workspace')
 makedepends=('extra-cmake-modules' 'qt6-tools' 'qt6-translations' 'git' 'boost')
 source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
 	"calamares.desktop")

@@ -1,25 +1,35 @@
-# Maintainer: Hayate Naka-mura <hayatehay.njb at gmail.com>
-# Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
-# Maintainer: Fabian Bornschein <fabiscafe@archlinux.org>
+# Maintainer: Hayate Nakamura <hayatehay.njb at gmail.com>
+# Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+# Contributor: Fabian Bornschein <fabiscafe@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 # Contributor: Yosef Or Boczko <yoseforb@gnome.org>
 
-pkgname=gnome-software-packagekit
 _pkgname=gnome-software
-pkgver=46.0
+_pkgver=46.2
+pkgname=gnome-software-packagekit
+pkgver=${_pkgver}+nmi1
 pkgrel=1
 pkgdesc="GNOME Software Tools"
-url="https://wiki.gnome.org/Apps/Software/"
+url="https://apps.gnome.org/Software"
 arch=(x86_64)
 license=(GPL-2.0-or-later)
 depends=(
   appstream
+  dconf
+  gcc-libs
+  gdk-pixbuf2
+  glib2
+  glibc
   gsettings-desktop-schemas
   gtk4
+  hicolor-icon-theme
+  json-glib
   libadwaita
+  libgudev
   libsoup3
   libsysprof-capture
   libxmlb
+  pango
   packagekit
   polkit
 )
@@ -43,25 +53,19 @@ optdepends=(
 groups=(gnome)
 provides=(gnome-software)
 conflicts=(gnome-software)
-_commit=9dec134914268d135a6f5251ddd624fef2de3c10  # tags/46.0^0
 source=(
-  "git+https://gitlab.gnome.org/GNOME/gnome-software.git#commit=$_commit"
+  "git+https://gitlab.gnome.org/GNOME/gnome-software.git?#tag=${_pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/mwleeds/gnome-pwa-list.git"
 )
-b2sums=('SKIP'
+b2sums=('ea19a0dc0884f8820320c3159740330d907365f70e130f3a963f414bd51f1fd994b2318b39bc64390d2e6a9fcfa22a1481b829d9bfb559030b405c71357adcb4'
         'SKIP')
-
-pkgver() {
-  cd $_pkgname
-  git describe --tags | sed -r 's/\.([a-z])/\1/;s/([a-z])\./\1/;s/[^-]*-g/r&/;s/-/+/g'
-}
 
 prepare() {
   cd $_pkgname
 
   git submodule init
   git submodule set-url subprojects/gnome-pwa-list "$srcdir/gnome-pwa-list"
-  git -c protocol.file.allow=always submodule update
+  git -c protocol.file.allow=always -c protocol.allow=never submodule update
 }
 
 build() {
