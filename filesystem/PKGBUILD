@@ -1,7 +1,8 @@
-# Maintainer: Hayate Naka-mura <hayatehay.njb at gmail.com>
+# Maintainer: Nakamura Musical Industries D.C. <knjbfm at gmail.com>
+# Contributor: Hayate Nakamura <hayatehay.njb at gmail.com>
 
 pkgname=filesystem
-pkgver=2024.05.07+alis24.05
+pkgver=2024.07.13+alis24.07
 pkgrel=1
 pkgdesc='Base Alis files'
 arch=('any')
@@ -28,7 +29,7 @@ sha256sums=('e03bede3d258d680548696623d5979c6edf03272e801a813c81ba5a5c64f4f82'
             '785c6c3614a27ae6115a27c1ca55bbf333654780997c4ba7e181172b021d1bf3'
             '8ca2d8eef6fb5143c9ef7e9174ccfef59ac7ad2deee243574cd10c763156cc10'
             'c8ee7a9faf798caab178ec51afae4146f1efd8a716b7acedf28345b6c75f9697'
-            'd79ded7aa9d1b9356743da5633f67894effb24bbe34636b90156375f7472eb51'
+            '2d1a91fa4efe5e6329c2f436b5071f4362c688c0b745f4ddfe7ff3d4ae6357ab'
             '8f08231922fe185d3132f9aedded5cd688fb7c482a6f6f272402ded82fa4849a'
             '13e2783884783ef46b8345fbcdf7880f0414c0a9c42e2b2fc6a2b048cbc2d86e'
             '5557d8e601b17a80d1ea7de78a9869be69637cb6a02fbfe334e22fdf64e61d4c'

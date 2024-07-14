@@ -1,7 +1,7 @@
 # Maintainer: Hayate Nakamura (hayatehay.njb at gmail dot com)
 
 pkgname=calamares-settings-alis
-pkgver=24.05
+pkgver=24.07
 pkgrel=1
 pkgdesc="Alis Calamares Settings and Branding"
 arch=('any')
@@ -12,7 +12,7 @@ optdepends=("calamares")
 replaces=("univabootmnt")
 options=(!strip !emptydirs)
 source=(${pkgname}-${pkgver}.tar.gz::"${url}/archive/refs/tags/${pkgver}.tar.gz")
-md5sums=('4aa1db44c84e828e14fe959d1701046c')
+sha256sums=('52b4d8894d6b596758e9ff639216860bfbeff5394d027e36c03885a4d17c2555')
 
 package() {
 	cd ${srcdir}/${pkgname}-${pkgver}

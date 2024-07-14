@@ -1,8 +1,9 @@
 # Maintainer: Hayate Nakamura <hayatehay.njb at gmail.com>
 
 pkgname=calamares
-pkgver=3.3.5
-pkgrel=2.1
+_pkgver=3.3.8
+pkgver=${_pkgver}+nmi1
+pkgrel=1
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 url="https://github.com/calamares/calamares"
@@ -12,13 +13,13 @@ depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'solid' 'yaml-cpp' 'kpmco
 	'boost-libs' 'ckbcomp' 'hwinfo' 'qt6-svg' 'polkit-qt6'
 	'squashfs-tools' 'libpwquality' 'python' 'plasma-workspace')
 makedepends=('extra-cmake-modules' 'qt6-tools' 'qt6-translations' 'git' 'boost')
-source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
+source=("${url}/releases/download/v${_pkgver}/${pkgname}-${_pkgver}.tar.gz"
 	"calamares.desktop")
-sha256sums=('65b11d6bb2ba76fc74fed08faa4b6fe43d1a5bf4a2522b30fc43b44151686c47'
+sha256sums=('09435b04e7e5cee16177223068d8a7402c3c6b8126af13ff527af77742c43363'
             '536d17352dd590ef5aaa02eac8bcde2d9b7fd2c2cc3db20bece6270e42fad329')
 
 build() {
-	cd ${srcdir}/${pkgname}-${pkgver} || exit
+	cd ${srcdir}/${pkgname}-${_pkgver} || exit
 
 	mkdir -p build && cd build || exit
 	cmake .. \
@@ -37,7 +38,7 @@ build() {
 }
 
 package() {
-	cd ${srcdir}/${pkgname}-${pkgver}/build || exit
+	cd ${srcdir}/${pkgname}-${_pkgver}/build || exit
 	make DESTDIR=${pkgdir} install
 	install -Dm755 "${srcdir}/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
 }
